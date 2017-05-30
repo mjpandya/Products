@@ -2,7 +2,7 @@
   "BrandName":"Samsung",
   "ImagePath":"C:/images/c9Pro.img",
   "SimData":{
-    "DualSim":"true",
+    "DualSim":true,
     "SimOne":{
       "SimType":"GSM",
       "SimSize":"Nano"
@@ -21,6 +21,7 @@
     "Touch":"Yes, with Multitouch",
     "Size":"5 inches",
     "Pixels":"720 x 1280 pixels",
+    "PPI":"220",
     "Features":"IPS Display"
   },
   "Memory":{
@@ -56,6 +57,12 @@
       "Flash":"LED"
     }
   },
+  "Technical":{
+    "OS":"Naugat",
+    "CPU":"Snapdragon 235",
+    "GPU":"Sanpdragon Dual Core",
+    "Browser":"Chrome"
+  },
   "Multimedia":{
     "Supports":"Yes",
     "Email":"Yes",
@@ -69,9 +76,10 @@
     "FingerprintSensor":"Yes",
     "Sensors":"All Sensors",
     "HeadPhoneJack":"3.5 mm"
-    }
+  },
   "Bettery":{
     "Type":"Lio",
     "Size":"4100mh"
-  }
+  },
+  "ReviewLink":"https://www.youtube.com"
 }
