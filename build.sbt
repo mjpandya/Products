@@ -14,6 +14,10 @@ scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8")
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 
+resolvers += "Sonatype releases" at "https://oss.sonatype.org/content/repositories/releases"
+
+resolvers += "Sonatype snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
+
 libraryDependencies ++= {
   val akkaV = "2.3.9"
   val sprayV = "1.3.3"

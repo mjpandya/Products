@@ -7,7 +7,7 @@ import akka.http.scaladsl.server.Directives._
 import akka.pattern.ask
 import akka.util.Timeout
 import config.AppConfig
-import model.ProductDetails
+import model.{SmartPhone}
 
 import scala.util.{Failure, Success}
 
@@ -22,9 +22,9 @@ trait SaveProduct extends AppConfig{
     val productProcessort = system.actorSelection("/*/ProductProcessor")
     logRequestResult("Save Product into Product List", akka.event.Logging.InfoLevel){
       put{
-          entity(as[ProductDetails]) { product =>
+          entity(as[SmartPhone]) { product =>
             implicit val timeout = Timeout(300, TimeUnit.SECONDS)
-            val res = (productProcessort ? product).mapTo[ProductDetails]
+            val res = (productProcessort ? product).mapTo[SmartPhone]
             onComplete(res) {
               case Success(response) =>
                 complete(HttpResponse(entity = HttpEntity(MediaTypes.`application/json`, response.toJson.toString)))

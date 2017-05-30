@@ -1,0 +1,77 @@
+{
+  "BrandName":"Samsung",
+  "ImagePath":"C:/images/c9Pro.img",
+  "SimData":{
+    "DualSim":"true",
+    "SimOne":{
+      "SimType":"GSM",
+      "SimSize":"Nano"
+    },
+    "SimTwo":{
+      "SimType":"GSM",
+      "SimSize":"Nano"
+    }
+  },
+  "Design":{
+    "Dimensions":"139.3 x 69.59 x 8.5 mm",
+    "Weight":"144 g"
+  },
+  "Display":{
+    "DisplayType":"Color IPS screen, 16M colors",
+    "Touch":"Yes, with Multitouch",
+    "Size":"5 inches",
+    "Pixels":"720 x 1280 pixels",
+    "Features":"IPS Display"
+  },
+  "Memory":{
+    "Ram":"4GB",
+    "Internal":"32GB",
+    "ExternalSupport":"NO",
+    "CardSlotType":"NO"
+  },
+  "Connectivity":{
+    "GPRS":"Yes",
+    "EDGE":"Yes",
+    "THREEG":"Yes",
+    "FOURG":"Yes",
+    "VoLTE":"Yes",
+    "WIFI":"Yes, with wifi-hotspot",
+    "Bluetooth":"Yes, v4.1",
+    "USB":"Yes, microUSB v2.0"
+  },
+  "Camera":{
+    "RearCamera":{
+      "Pixels":"12MP",
+      "AutoFocus":"Yes",
+      "Features":"Face detection, Smile detection, Geo tagging, Panorama, Touch to focus",
+      "VidoeRecording":"Yes, 1080p @ 30fps",
+      "Flash":"LED"
+    },
+
+    "FrontCamera":{
+      "Pixels":"12MP",
+      "AutoFocus":"Yes",
+      "Features":"Face detection, Smile detection, Geo tagging, Panorama, Touch to focus",
+      "VidoeRecording":"Yes, 1080p @ 30fps",
+      "Flash":"LED"
+    }
+  },
+  "Multimedia":{
+    "Supports":"Yes",
+    "Email":"Yes",
+    "Music":"Yes",
+    "Video":"Yes",
+    "FMRadio":"Yes",
+    "DocumentReader":"Yes"
+  },
+  "Extra":{
+    "GPS":"Yes",
+    "FingerprintSensor":"Yes",
+    "Sensors":"All Sensors",
+    "HeadPhoneJack":"3.5 mm"
+    }
+  "Bettery":{
+    "Type":"Lio",
+    "Size":"4100mh"
+  }
+}
