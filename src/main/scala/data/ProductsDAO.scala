@@ -18,4 +18,13 @@ object ProductsDAO {
     val productId  = ProductDao.insert(pd ,new WriteConcern()).get
     ProductDao.findOne(MongoDBObject("_id" ->  productId)).get
   }
+  def findProduct(model:String) = {
+    ProductDao.findOne(MongoDBObject("Model" -> model)).get
+  }
+  def findProductByPrice(priceFrom:String,priceTo:String) ={
+    ProductDao.collection.find($and ({"Price" $gte priceFrom.toDouble},{"Price" $lte priceTo.toDouble}))
+  }
+  def findProductByFilter(filter:Array[String]) = {
+    ProductDao.collection.find()
+  }
 }

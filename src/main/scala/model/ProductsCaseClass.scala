@@ -1,6 +1,6 @@
 package model
 
-import org.bson.types.ObjectId
+import com.novus.salat.annotations._
 import spray.json.DefaultJsonProtocol
 
 /**
@@ -18,8 +18,8 @@ case class Technical(OS:String,CPU:String,GPU:String,Browser:String)
 case class Multimedia(Supports:String,Email:String,Music:String,Video:String,FMRadio:String,DocumentReader:String)
 case class Extra(GPS:String,FingerprintSensor:String,Sensors:String,HeadPhoneJack:String)
 case class Bettery(Type:String,Size:String)
-case class SmartPhone(BrandName:String,ImagePath:String,SimData:SimData,Design:Design,Display:Display,Memory:Memory,Connectivity:Connectivity,Camera:CameraData,Technical:Technical,
-                      Multimedia:Multimedia,Extra:Extra,Bettery:Bettery,ReviewLink:String)
+case class SmartPhone(@Key("_id") ProductId: Option[String],BrandName:String,Model:String,ImagePath:String,SimData:SimData,Design:Design,Display:Display,Memory:Memory,Connectivity:Connectivity,Camera:CameraData,Technical:Technical,
+                      Multimedia:Multimedia,Extra:Extra,Bettery:Bettery,ReviewLink:String,Price:Double)
 
 object ProductsProtocol extends DefaultJsonProtocol{
   implicit val simDetails_format = jsonFormat2(SimDetails.apply)
@@ -34,6 +34,6 @@ object ProductsProtocol extends DefaultJsonProtocol{
   implicit val multimedia_format = jsonFormat6(Multimedia.apply)
   implicit val extra_format = jsonFormat4(Extra.apply)
   implicit val bettery_format = jsonFormat2(Bettery.apply)
-  implicit val productDetails_format = jsonFormat13(SmartPhone.apply)
+  implicit val productDetails_format = jsonFormat16(SmartPhone.apply)
 
 }
