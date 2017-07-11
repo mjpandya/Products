@@ -46,10 +46,9 @@ libraryDependencies += "com.typesafe.akka" %% "akka-http-experimental" % "2.4.7"
 // https://mvnrepository.com/artifact/com.novemberain/quartz-mongodb
 //libraryDependencies += "com.novemberain" % "quartz-mongodb" % "2.0.0-rc3"
 
-libraryDependencies += "org.mongodb" % "casbah-commons_2.11" % "2.8.1"
+libraryDependencies += "org.mongodb" % "casbah_2.11" % "3.1.1"
 
-// https://mvnrepository.com/artifact/org.mongodb/casbah-commons_2.11
-//libraryDependencies += "org.mongodb" % "casbah-commons_2.11" % "3.1.1" exclude("org.mongodb","mongo-java-driver")
+//libraryDependencies += "com.github.salat" %% "salat" % "1.11.0-SNAPSHOT" exclude("jline","jline")
 
 
 libraryDependencies += "com.novus" %% "salat" % "1.9.9"

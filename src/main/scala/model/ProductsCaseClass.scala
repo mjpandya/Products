@@ -21,6 +21,8 @@ case class Bettery(Type:String,Size:String)
 case class SmartPhone(@Key("_id") ProductId: Option[String],BrandName:String,Model:String,ImagePath:String,SimData:SimData,Design:Design,Display:Display,Memory:Memory,Connectivity:Connectivity,Camera:CameraData,Technical:Technical,
                       Multimedia:Multimedia,Extra:Extra,Bettery:Bettery,ReviewLink:String,Price:Double)
 
+case class HeaderMenu(@Key("_id") MenuId: Option[String],ProductName:String,LatestModels:Seq[String])
+
 object ProductsProtocol extends DefaultJsonProtocol{
   implicit val simDetails_format = jsonFormat2(SimDetails.apply)
   implicit val simData_format = jsonFormat3(SimData.apply)
@@ -35,5 +37,5 @@ object ProductsProtocol extends DefaultJsonProtocol{
   implicit val extra_format = jsonFormat4(Extra.apply)
   implicit val bettery_format = jsonFormat2(Bettery.apply)
   implicit val productDetails_format = jsonFormat16(SmartPhone.apply)
-
+  implicit val HeaderMenu_format3 = jsonFormat3(HeaderMenu.apply)
 }

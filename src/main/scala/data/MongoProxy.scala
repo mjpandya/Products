@@ -12,4 +12,7 @@ object MongoProxy {
   def products_collection(mongoURI:String=config.getString("Mongo.uri"),dbName:String=config.getString("Mongo.dbName"),collection:String=config.getString("Mongo.productsCollection")) =  {
     MongoClient(MongoClientURI(mongoURI))(dbName)(collection)
   }
+  def menu_collection(mongoURI:String=config.getString("Mongo.uri"),dbName:String=config.getString("Mongo.dbName"),collection:String=config.getString("Mongo.menuCollection")) =  {
+    MongoClient(MongoClientURI(mongoURI))(dbName)(collection)
+  }
 }

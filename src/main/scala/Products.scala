@@ -4,19 +4,20 @@ import akka.http.scaladsl.server.Directives._
 import akka.routing.RoundRobinPool
 import akka.stream.ActorMaterializer
 import config.AppConfig
-import routes.SaveProduct
+import routes.{GetHeaderMenu, SaveProduct}
 
 /**
  * Created by 787655 on 5/29/2017.
  */
-object Products extends App with AppConfig with SaveProduct{
+object Products extends App with AppConfig with SaveProduct with GetHeaderMenu{
   implicit val system = ActorSystem("products")
   implicit val materializer = ActorMaterializer()
   val poolSize = config.getInt("poolSize")
 
   val productProccessor = system.actorOf(RoundRobinPool(poolSize).props(Props[processor.ProductProcessor]), "ProductProcessor")
+  val menuProccessor = system.actorOf(RoundRobinPool(poolSize).props(Props[processor.MenuProcessor]), "MenuProcessor")
   def route = {
-    saveProduct(system)
+    getDisplayHeader(system) ~ saveProduct(system)
   }
   val loggingRoute =  logRequestResult("products" , akka.event.Logging.InfoLevel)(route)
   Http().bindAndHandle(loggingRoute, host, port)

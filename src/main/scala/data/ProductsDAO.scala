@@ -5,6 +5,10 @@ import com.mongodb.casbah.Imports._
 import com.novus.salat.dao.SalatDAO
 import com.novus.salat.global._
 import model.{SmartPhone}
+import org.bson.types.ObjectId
+import com.mongodb.casbah.commons.MongoDBObject
+import com.mongodb.casbah.Imports._
+import com.mongodb.casbah.commons.conversions.scala.{RegisterConversionHelpers, RegisterJodaLocalDateTimeConversionHelpers, RegisterJodaTimeConversionHelpers}
 
 
 /**
@@ -15,7 +19,7 @@ object ProductsDAO {
   object ProductDao extends SalatDAO[SmartPhone, ObjectId](collection = products_collection)
 
   def saveProduct(pd : SmartPhone) = {
-    val productId  = ProductDao.insert(pd ,new WriteConcern()).get
+    val productId  = ProductDao.insert(pd).get
     ProductDao.findOne(MongoDBObject("_id" ->  productId)).get
   }
   def findProduct(model:String) = {
