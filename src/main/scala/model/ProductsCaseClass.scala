@@ -1,6 +1,6 @@
 package model
 
-import com.novus.salat.annotations._
+import salat.annotations._
 import spray.json.DefaultJsonProtocol
 
 /**
@@ -21,7 +21,7 @@ case class Bettery(Type:String,Size:String)
 case class SmartPhone(@Key("_id") ProductId: Option[String],BrandName:String,Model:String,ImagePath:String,SimData:SimData,Design:Design,Display:Display,Memory:Memory,Connectivity:Connectivity,Camera:CameraData,Technical:Technical,
                       Multimedia:Multimedia,Extra:Extra,Bettery:Bettery,ReviewLink:String,Price:Double)
 
-case class HeaderMenu(@Key("_id") MenuId: Option[String],ProductName:String,LatestModels:Seq[String])
+  case class HeaderMenu(@Key("_id") MenuId: Option[String],ProductName:String,LatestModels:Seq[String])
 
 object ProductsProtocol extends DefaultJsonProtocol{
   implicit val simDetails_format = jsonFormat2(SimDetails.apply)

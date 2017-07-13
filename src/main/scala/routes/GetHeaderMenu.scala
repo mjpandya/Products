@@ -27,17 +27,23 @@ trait GetHeaderMenu extends AppConfig {
       println("Recieved Request.....")
       logRequestResult("Get Header Menu from DB", akka.event.Logging.InfoLevel) {
         get {
-              import model.ProductsProtocol._
-              println("Executing GET for Header...")
-              implicit val timeout = Timeout(300, TimeUnit.SECONDS)
-              //val response = (menuProcessor ? "HEADER_MENU").mapTo[HeaderMenu]
-              val menuList = MenuDAO.getHeaderMenu()
-              if(!menuList.isEmpty) {
-                for (menu <- menuList) {
-                  complete(HttpResponse(entity = HttpEntity(MediaTypes.`application/json`, menu.toJson.toString)))
-                }
-              }
-             /* onComplete(response) {
+          import model.ProductsProtocol._
+          println("Executing GET for Header...")
+          implicit val timeout = Timeout(300, TimeUnit.SECONDS)
+          //val response = (menuProcessor ? "HEADER_MENU").mapTo[HeaderMenu]
+          val menuList = MenuDAO.getHeaderMenu()
+          if (!menuList.isEmpty) {
+            var res: Seq[HeaderMenu] = Nil
+            for (menu <- menuList) {
+              val response = HeaderMenu(menu.MenuId,menu.ProductName,menu.LatestModels)
+              res = res :+ response
+            }
+            complete(HttpResponse(entity = HttpEntity(MediaTypes.`application/json`, res.toJson.toString)))
+          }else{
+            complete(HttpResponse(entity = HttpEntity(MediaTypes.`application/json`, "ERROR".toJson.toString)))
+          }
+
+          /* onComplete(response) {
                 case Success(response) =>
                   println("Response Recived : " + response.toJson.toString)
                   complete(HttpResponse(entity = HttpEntity(MediaTypes.`application/json`, response.toJson.toString)))
@@ -45,6 +51,7 @@ trait GetHeaderMenu extends AppConfig {
                   println("Error : " + error.getMessage)
                   complete(error)
               }*/
+          //}
         }
       }
     }

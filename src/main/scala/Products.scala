@@ -5,11 +5,11 @@ import akka.routing.RoundRobinPool
 import akka.stream.ActorMaterializer
 import config.AppConfig
 import routes.{GetHeaderMenu, SaveProduct}
-
+import utils.CorsSupport
 /**
  * Created by 787655 on 5/29/2017.
  */
-object Products extends App with AppConfig with SaveProduct with GetHeaderMenu{
+object Products extends App with AppConfig with CorsSupport with SaveProduct with GetHeaderMenu{
   implicit val system = ActorSystem("products")
   implicit val materializer = ActorMaterializer()
   val poolSize = config.getInt("poolSize")
@@ -20,5 +20,5 @@ object Products extends App with AppConfig with SaveProduct with GetHeaderMenu{
     getDisplayHeader(system) ~ saveProduct(system)
   }
   val loggingRoute =  logRequestResult("products" , akka.event.Logging.InfoLevel)(route)
-  Http().bindAndHandle(loggingRoute, host, port)
+  Http().bindAndHandle(corsHandler(loggingRoute), host, port)
 }
