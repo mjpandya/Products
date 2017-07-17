@@ -1,5 +1,6 @@
 import akka.actor.{Props, ActorSystem}
 import akka.http.scaladsl.Http
+import akka.http.scaladsl.model.headers.RawHeader
 import akka.http.scaladsl.server.Directives._
 import akka.routing.RoundRobinPool
 import akka.stream.ActorMaterializer
@@ -14,11 +15,17 @@ object Products extends App with AppConfig with CorsSupport with SaveProduct wit
   implicit val materializer = ActorMaterializer()
   val poolSize = config.getInt("poolSize")
 
+
   val productProccessor = system.actorOf(RoundRobinPool(poolSize).props(Props[processor.ProductProcessor]), "ProductProcessor")
   val menuProccessor = system.actorOf(RoundRobinPool(poolSize).props(Props[processor.MenuProcessor]), "MenuProcessor")
+
+  val corsHeaders = List(RawHeader("Access-Control-Allow-Origin", "*"),
+    RawHeader("Access-Control-Allow-Methods", "GET, POST, PUT, OPTIONS, DELETE"),
+    RawHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization") )
+
   def route = {
-    getDisplayHeader(system) ~ saveProduct(system)
+    respondWithHeaders(corsHeaders){getDisplayHeader(system) ~ getCategoryHeader(system) ~ saveProduct(system)}
   }
   val loggingRoute =  logRequestResult("products" , akka.event.Logging.InfoLevel)(route)
-  Http().bindAndHandle(corsHandler(loggingRoute), host, port)
+  Http().bindAndHandle(loggingRoute, host, port)
 }
